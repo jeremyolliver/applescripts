@@ -3,28 +3,10 @@ Finder Folder Notifier. Notifies the user via Growl (if available) or a popup di
 of any new items (files or folders) that have been added to the folder this script is
 attached to. The user can quickly jump to these files if desired
 
-This script is based off an Apple sample script, and modified for Growl support and to
-improve the usefulness of the display message
+This script is partly based off an Apple sample script, which displayed and alert dialog.
+I have modified this script for Growl support and to improve the usefulness of the display message
 
 Author - Jeremy Olliver
-*)
-
-(*
-add - new item alert
-
-This Folder Action handler is triggered whenever items are added to the attached folder.
-The script will display an alert containing the number of items added and offering the user
-the option to reveal the added items in Finder.
-
-Copyright © 2002–2007 Apple Inc.
-
-You may incorporate this Apple sample code into your program(s) without
-restriction.  This Apple sample code has been provided "AS IS" and the
-responsibility for its operation is yours.  You are not permitted to
-redistribute this Apple sample code as "Apple sample code" after having
-made changes.  If you're going to redistribute the code, we require
-that you make it clear that the code was descended from Apple sample
-code, but that you've made changes.
 *)
 
 property dialog_timeout : 30 -- set the amount of time before dialogs auto-answer.
@@ -53,13 +35,16 @@ on adding folder items to this_folder after receiving added_items
 		
 		-- Set Message Body to the list of added files
 		set msg_body to ("")
+		set counter to 0
 		repeat with added_item in added_items
 			tell application "Finder" to set file_name to (name of added_item)
-			set msg_body to msg_body & (file_name & return) as Unicode text
+			set msg_body to msg_body & file_name
+			set counter to counter + 1
+			if counter < item_count then
+				set msg_body to (msg_body & return) as Unicode text
+			end if
 		end repeat
-		
-		-- display dialog msg_body
-		
+				
 		if isGrowlRunning then
 			-- Send notification to growl
 			tell application "GrowlHelperApp"
