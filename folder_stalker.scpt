@@ -38,21 +38,21 @@ on adding folder items to this_folder after receiving added_items
 		
 		-- if isGrowlRunning then
 			-- Send notification to growl
-			tell application "GrowlHelperApp"
-				-- Make a list of all the notification types that this script will ever send:
-				set the allNotificationsList to {"File Added Notification"}
+		tell application "GrowlHelperApp"
+			-- Make a list of all the notification types that this script will ever send:
+			set the allNotificationsList to {"File Added Notification"}
 
-				-- Make a list of the notifications that will be enabled by default.      
-				-- Those not enabled by default can be enabled later in the 'Applications' tab of the growl prefpane.
-				set the enabledNotificationsList to {"File Added Notification"}
+			-- Make a list of the notifications that will be enabled by default.      
+			-- Those not enabled by default can be enabled later in the 'Applications' tab of the growl prefpane.
+			set the enabledNotificationsList to {"File Added Notification"}
 
-				-- Register our script with growl.
-				register as application "Finder Notifier" all notifications allNotificationsList default notifications enabledNotificationsList icon of application "Finder"
+			-- Register our script with growl.
+			register as application "Finder Notifier" all notifications allNotificationsList default notifications enabledNotificationsList icon of application "Finder"
 
-				-- send the Growl notification
-				notify with name "File Added Notification" title msg_title description "This is a test AppleScript notification." application name "Finder Notifier"
+			-- send the Growl notification
+			notify with name "File Added Notification" title msg_title description "This is a test AppleScript notification." application name "Finder Notifier"
 
-			end tell
+		end tell
 		-- else
 		-- 	-- Growl isn't running. Send notification via lame finder popup
 		-- 		set full_message to (msg_title & return & return & "Would you like to view the added items?") as Unicode text
