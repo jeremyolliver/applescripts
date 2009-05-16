@@ -51,6 +51,15 @@ on adding folder items to this_folder after receiving added_items
 			set isGrowlRunning to (count of (every process whose name is "GrowlHelperApp")) > 0
 		end tell
 		
+		-- Set Message Body to the list of added files
+		set msg_body to ("")
+		repeat with added_item in added_items
+			tell application "Finder" to set file_name to (name of added_item)
+			set msg_body to msg_body & (file_name & return) as Unicode text
+		end repeat
+		
+		-- display dialog msg_body
+		
 		if isGrowlRunning then
 			-- Send notification to growl
 			tell application "GrowlHelperApp"
@@ -65,12 +74,12 @@ on adding folder items to this_folder after receiving added_items
 				register as application "Finder Notifier" all notifications allNotificationsList default notifications enabledNotificationsList icon of application "Finder"
 				
 				-- send the Growl notification
-				notify with name "File Added Notification" title msg_title description "This is a test AppleScript notification." application name "Finder Notifier"
+				notify with name "File Added Notification" title msg_title description msg_body application name "Finder Notifier"
 				
 			end tell
 		else
 			-- Growl isn't running. Send notification via lame finder popup
-			set full_message to (msg_title & return & return & "Would you like to view the added items?") as Unicode text
+			set full_message to (msg_title & return & return & msg_body & return & return & "Would you like to view the added items?") as Unicode text
 			
 			display dialog the full_message buttons {"Yes", "No"} default button 2 with icon 1 giving up after dialog_timeout
 			set the user_choice to the button returned of the result
@@ -86,18 +95,8 @@ on adding folder items to this_folder after receiving added_items
 				end tell
 			end if
 		end if
-		
-		-- set alert_message to ("Folder Actions Alert:" & return & return) as Unicode text
-		-- if the item_count is greater than 1 then
-		-- 	set alert_message to alert_message & (the item_count as text) & " new items have "
-		-- else
-		-- 	set alert_message to alert_message & "One new item has "
-		-- end if
-		-- set alert_message to alert_message & "been placed in folder " & «data utxt201C» & the folder_name & «data utxt201D» & "."
-		-- set the alert_message to (the alert_message & return & return & "Would you like to view the added items?")
-		
-		-- 	display dialog the alert_message buttons {"Yes", "No"} default button 2 with icon 1 giving up after dialog_timeout
-		-- 	set the user_choice to the button returned of the result
-		
-	end try
+	-- For Debugging we can turn this on, otherwise the script will die silently
+	-- on error errorMessage number errorNumber from offendingObject partial result resultList
+	-- 	display dialog "Error Occured"
+	-- end try
 end adding folder items to
