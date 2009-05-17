@@ -20,7 +20,8 @@ on adding folder items to this_folder after receiving added_items
 		
 		-- find out how many new items have been placed in the folder
 		set the item_count to the number of items in the added_items
-		--create the alert string
+		
+		-- Set the Message title
 		set msg_title to (the item_count as text) & (" New ") as Unicode text
 		if the item_count is greater than 1 then
 			set msg_title to msg_title & ("items")
@@ -28,10 +29,6 @@ on adding folder items to this_folder after receiving added_items
 			set msg_title to msg_title & ("item")
 		end if
 		set msg_title to msg_title & (" in ") & the folder_name
-		
-		tell application "System Events"
-			set isGrowlRunning to (count of (every process whose name is "GrowlHelperApp")) > 0
-		end tell
 		
 		-- Set Message Body to the list of added files
 		set msg_body to ("")
@@ -44,9 +41,13 @@ on adding folder items to this_folder after receiving added_items
 				set msg_body to (msg_body & return) as Unicode text
 			end if
 		end repeat
-				
+		
+		tell application "System Events"
+			set isGrowlRunning to (count of (every process whose name is "GrowlHelperApp")) > 0
+		end tell
+		
 		if isGrowlRunning then
-			-- Send notification to growl
+			-- Send the notification to growl
 			tell application "GrowlHelperApp"
 				-- Make a list of all the notification types that this script will ever send:
 				set the allNotificationsList to {"File Added Notification"}
@@ -80,8 +81,6 @@ on adding folder items to this_folder after receiving added_items
 				end tell
 			end if
 		end if
-	-- For Debugging we can turn this on, otherwise the script will die silently
-	-- on error errorMessage number errorNumber from offendingObject partial result resultList
-	-- 	display dialog "Error Occured"
+		
 	end try
 end adding folder items to

@@ -2,12 +2,19 @@
 This script is for handling the repetitive task of Opening a code project in the terminal and given text editor
 This version of the script also opens the project in additional tabs and starts the rails console + server
 
-Recommended to use with Quicksilver
+EXAMPLE USAGE:
+You have a series of project directories in one folder (eg ~/projects/) and you use command line operations
+such as source code control, rake tasks etc.
+
+Use a Quicksilver (http://quicksilver.blacktree.com/) trigger to assign this script to a hotkey
+The script will prompt you to enter which project you wish to open, and will automatically open the project in
+the Terminal with a rails console and server in two other terminal tabs, and open the project in your text editor
+(default is TextMate here, set the command for your editor of choice).
 
 Author - Jeremy Olliver
 *)
 property projects_directory : "~/projects/" -- Set this to the path of the projects folder (include trailing slash)
-property editor_cmd : "mate -w" -- your editor command
+property editor_cmd : "mate -w" -- TextMate command. Replace with command for your own editor if different
 
 try
 	set the_result to display dialog ¬
