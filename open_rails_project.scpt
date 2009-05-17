@@ -1,5 +1,6 @@
 (*
 This script is for handling the repetitive task of Opening a code project in the terminal and given text editor
+This version of the script also opens the project in additional tabs and starts the rails console + server
 
 Recommended to use with Quicksilver
 
@@ -22,8 +23,18 @@ try
 			activate
 			-- Change to project directory and open the project with our editor
 			do script "cd ~/projects/" & project & " && " & editor_cmd & " ."
+			tell application "System Events"
+				-- Open the rails console in a second tab
+				keystroke "t" using {command down} -- open new tab
+				keystroke "cd ~/projects/" & project & " && ruby script/console\n" -- Execute this command in the second tab
+				
+				-- Start the rails server in a third tab
+				keystroke "t" using {command down} -- open new tab
+				keystroke "cd ~/projects/" & project & " && ruby script/server\n" -- Execute this command in the third tab
+				
+			end tell
 		end tell
-		-- Maximize the Window
+		-- Maximize the Terminal Window
 		tell application "Terminal" to copy (run script "tell application \"Finder\" to desktop's window's bounds") to bounds of window 1
 	end if
 end try
