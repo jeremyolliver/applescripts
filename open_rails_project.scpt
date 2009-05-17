@@ -1,11 +1,12 @@
 (*
 This script is for handling the repetitive task of Opening a code project in the terminal and given text editor
-This version of the script also opens the project in additional tabs and starts the rails console + server
+This version of the script also opens the project in additional tabs and starts the rails console + server.
 
-EXAMPLE USAGE:
-You have a series of project directories in one folder (eg ~/projects/) and you use command line operations
-such as source code control, rake tasks etc.
+This streamlines my usual workflow for opening a project which is: Open Terminal; cd to my project directory;
+open the project in my text editor ("mate ."); open two more additional terminal tabs, switch to the project
+and start rails server and consoles in those tabs.
 
+USAGE:
 Use a Quicksilver (http://quicksilver.blacktree.com/) trigger to assign this script to a hotkey
 The script will prompt you to enter which project you wish to open, and will automatically open the project in
 the Terminal with a rails console and server in two other terminal tabs, and open the project in your text editor

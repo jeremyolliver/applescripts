@@ -6,6 +6,17 @@ attached to. The user can quickly jump to these files if desired
 This script is partly based off an Apple sample script, which displayed and alert dialog.
 I have modified this script for Growl support and to improve the usefulness of the display message
 
+EXAMPLE USAGE:
+Get notified whenever someone puts a file in your local drop box.
+Script can be added to any folder like downloads etc
+
+INSTALLATION:
+1. copy this script to "~/Library/Scripts/Folder\ Action\ Scripts"
+2. Open "AppleScript Utility" (in /Applications/Utilities)
+3. Click on Folder Actions: "Set Up Actions..."
+4. Add the Folder you wish to watch, and attach this script to it
+5. This script will notify you whenever files are added to the selected folder
+
 Author - Jeremy Olliver
 *)
 

@@ -1,0 +1,13 @@
+These are some applescript's I wrote to fulfill functions that were useful to me
+
+folder_stalker
+==============
+Script for notifying via Growl (http://growl.info) notifier (or a finder popup dialog if Growl isn't installed) whenever files are added to whichever folder you choose to watch.
+
+open_project
+============
+Script which streamlines a workflow for opening a project in the Terminal and in a text editor
+
+open_rails_project
+==================
+Modified version of the above script which also runs the rails console and server scripts in two additional Terminal tabs
