@@ -83,5 +83,5 @@ on adding folder items to this_folder after receiving added_items
 	-- For Debugging we can turn this on, otherwise the script will die silently
 	-- on error errorMessage number errorNumber from offendingObject partial result resultList
 	-- 	display dialog "Error Occured"
-	-- end try
+	end try
 end adding folder items to
