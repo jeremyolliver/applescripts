@@ -11,10 +11,10 @@ Get notified whenever someone puts a file in your local drop box.
 Script can be added to any folder like downloads etc
 
 INSTALLATION:
-1. copy this script to "~/Library/Scripts/Folder\ Action\ Scripts"
+1. copy this script to "~/Library/Scripts/Folder Action Scripts" (Folder may not exist yet)
 2. Open "AppleScript Utility" (in /Applications/Utilities)
 3. Click on Folder Actions: "Set Up Actions..."
-4. Add the Folder you wish to watch, and attach this script to it
+4. Add the Folder you wish to watch, and attach this script to it (Make sure you also tick the checkbox "Enable folder actions")
 5. This script will notify you whenever files are added to the selected folder
 
 Author - Jeremy Olliver
