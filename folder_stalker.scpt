@@ -3,19 +3,21 @@ Finder Folder Notifier. Notifies the user via Growl (if available) or a popup di
 of any new items (files or folders) that have been added to the folder this script is
 attached to. The user can quickly jump to these files if desired
 
-This script is partly based off an Apple sample script, which displayed and alert dialog.
+This script is partly based off an Apple sample script, which simply displayed an alert dialog.
 I have modified this script for Growl support and to improve the usefulness of the display message
 
 EXAMPLE USAGE:
-Get notified whenever someone puts a file in your local drop box.
+Get notified whenever someone puts a file in your public drop box.
 Script can be added to any folder like downloads etc
 
 INSTALLATION:
-1. copy this script to "~/Library/Scripts/Folder\ Action\ Scripts"
-2. Open "AppleScript Utility" (in /Applications/Utilities)
+1. copy this script to "~/Library/Scripts/Folder\ Action\ Scripts/" (Note, the Scripts folder may not exist already in your Library)
+2. Open "AppleScript Utility" (in /Applications/Utilities/)
 3. Click on Folder Actions: "Set Up Actions..."
-4. Add the Folder you wish to watch, and attach this script to it
-5. This script will notify you whenever files are added to the selected folder
+4. Tick "Enable Folder Actions"
+5. Add the Folder you wish to watch, and attach this script to it
+
+- This script will now notify you whenever files are added to the selected folder
 
 Author - Jeremy Olliver
 *)
