@@ -26,19 +26,19 @@ try
 	set button_pressed to button returned of the_result
 	set project to text returned of the_result
 	if button_pressed is "Open" then
-		display dialog "Opening " & project
 		tell application "Terminal"
 			activate
 			-- Change to project directory and open the project with our editor
 			do script "cd ~/projects/" & project & " && " & editor_cmd & " ."
+			-- The above command opens TextMate, we'll need to switch focus back to Terminal
 			tell application "System Events"
 				-- Open the rails console in a second tab
-				keystroke "t" using {command down} -- open new tab
-				keystroke "cd ~/projects/" & project & " && ruby script/console\n" -- Execute this command in the second tab
+				tell process "Terminal" to keystroke "t" using {command down} -- open new tab
+				tell process "Terminal" to keystroke "cd ~/projects/" & project & " && ruby script/console\n" -- Execute this command in the second tab
 				
 				-- Start the rails server in a third tab
-				keystroke "t" using {command down} -- open new tab
-				keystroke "cd ~/projects/" & project & " && ruby script/server\n" -- Execute this command in the third tab
+				-- tell process "Terminal" to keystroke "t" using {command down} -- open new tab
+				-- tell process "Terminal" to keystroke "cd ~/projects/" & project & " && ruby script/server\n" -- Execute this command in the third tab
 				
 			end tell
 		end tell
