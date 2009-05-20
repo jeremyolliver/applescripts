@@ -3,16 +3,19 @@ This script is for handling the repetitive task of Opening a code project in the
 This version of the script also opens the project in additional tabs and starts the rails console + server.
 
 This streamlines my usual workflow for opening a project which is: Open Terminal; cd to my project directory;
-open the project in my text editor ("mate ."); open two more additional terminal tabs, switch to the project
-and start rails server and consoles in those tabs.
+open the project in my text editor ("mate ."); open two more additional terminal tabs, switching to the project
+and starting rails server and consoles in those tabs.
+This script turns that workflow into: hit keyboard shortcut; enter project name to open in a popup. Done.
 
-USAGE:
-Copy this script to ~/Library/Scripts/
-The easiest way to execute it is using Quicksilver (http://quicksilver.blacktree.com/) to add a trigger for
-this script. This will allow you to assign a hotkey for running it
-The script will prompt you to enter which project you wish to open, and will automatically open the project in
-the Terminal with a rails console and server in two other terminal tabs, and open the project in your text editor
-(default is TextMate here, set the command for your editor of choice).
+CUSTOMISATION:
+You should change the projects_directory property here if you don't keep your code in ~/projects/ (e.g. change to ~/workspace/)
+
+INSTALLATION:
+1. Add ^m (Control + m) as a shortcut for maximizing a window by opening System Prefs, accessing the Keyboard Shortcuts pane
+and adding an entry for ^m with "Zoom" as the Menu title
+2. Copy this script to ~/Library/Scripts/
+3. Install Quicksilver if you haven't already (http://quicksilver.blacktree.com/) and add a trigger (keyboard shortcut) for launching this script
+4. Profit from increased productivity
 
 Author - Jeremy Olliver
 *)
