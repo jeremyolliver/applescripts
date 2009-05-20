@@ -7,7 +7,9 @@ open the project in my text editor ("mate ."); open two more additional terminal
 and start rails server and consoles in those tabs.
 
 USAGE:
-Use a Quicksilver (http://quicksilver.blacktree.com/) trigger to assign this script to a hotkey
+Copy this script to ~/Library/Scripts/
+The easiest way to execute it is using Quicksilver (http://quicksilver.blacktree.com/) to add a trigger for
+this script. This will allow you to assign a hotkey for running it
 The script will prompt you to enter which project you wish to open, and will automatically open the project in
 the Terminal with a rails console and server in two other terminal tabs, and open the project in your text editor
 (default is TextMate here, set the command for your editor of choice).
@@ -18,6 +20,9 @@ property projects_directory : "~/projects/" -- Set this to the path of the proje
 property editor_cmd : "mate -w" -- TextMate command. Replace with command for your own editor if different
 
 try
+	-- The display dialog opens in Quicksilver, which is usually in the background, we should focus it first, so the popup is in the foreground
+	activate application "Quicksilver" -- comment this out, if you're not using quicksilver to run the script
+	
 	set the_result to display dialog ¬
 		"Choose project to open:" default answer ¬
 		"project_name" with icon 1 ¬
@@ -32,17 +37,19 @@ try
 			do script "cd ~/projects/" & project & " && " & editor_cmd & " ."
 			-- The above command opens TextMate, we'll need to switch focus back to Terminal
 			tell application "System Events"
-				-- Open the rails console in a second tab
-				tell process "Terminal" to keystroke "t" using {command down} -- open new tab
-				tell process "Terminal" to keystroke "cd ~/projects/" & project & " && ruby script/console\n" -- Execute this command in the second tab
+				tell process "Terminal"
+					-- Open the rails console in a second tab
+					keystroke "t" using {command down} -- open new tab
+					keystroke "cd ~/projects/" & project & " && ruby script/console\n" -- Execute this command in the second tab
 				
-				-- Start the rails server in a third tab
-				-- tell process "Terminal" to keystroke "t" using {command down} -- open new tab
-				-- tell process "Terminal" to keystroke "cd ~/projects/" & project & " && ruby script/server\n" -- Execute this command in the third tab
+					-- Start the rails server in a third tab, this is optional
+					-- keystroke "t" using {command down} -- open new tab
+					-- keystroke "cd ~/projects/" & project & " && ruby script/server\n" -- Execute this command in the third tab
 				
+					keystroke "{" using {command down} -- toggle forward one tab (ie back to the first). so back to command line tab, whether we opted to have a rails server or not
+					keystroke "m" using {control down} -- Maximize Terminal window. You'll need to add ^m as a keyboard shortcut for "Zoom" in System Prefs for this to work
+				end tell
 			end tell
 		end tell
-		-- Maximize the Terminal Window
-		tell application "Terminal" to copy (run script "tell application \"Finder\" to desktop's window's bounds") to bounds of window 1
 	end if
 end try
