@@ -43,11 +43,11 @@ try
 				tell process "Terminal"
 					-- Open the rails console in a second tab
 					keystroke "t" using {command down} -- open new tab
-					keystroke "cd ~/projects/" & project & " && ruby script/console\n" -- Execute this command in the second tab
+					keystroke "cd ~/projects/" & project & " && ruby script/console" & return -- Execute this command in the second tab
 				
 					-- Start the rails server in a third tab, this is optional
 					-- keystroke "t" using {command down} -- open new tab
-					-- keystroke "cd ~/projects/" & project & " && ruby script/server\n" -- Execute this command in the third tab
+					-- keystroke "cd ~/projects/" & project & " && ruby script/server" & return -- Execute this command in the third tab
 				
 					keystroke "{" using {command down} -- toggle forward one tab (ie back to the first). so back to command line tab, whether we opted to have a rails server or not
 					keystroke "m" using {control down} -- Maximize Terminal window. You'll need to add ^m as a keyboard shortcut for "Zoom" in System Prefs for this to work
