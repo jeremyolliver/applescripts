@@ -36,22 +36,22 @@ try
 	if button_pressed is "Open" then
 		tell application "Terminal"
 			activate
-			-- Change to project directory and open the project with our editor
-			do script "cd ~/projects/" & project & " && " & editor_cmd & " ."
-			-- The above command opens TextMate, we'll need to switch focus back to Terminal
-			tell application "System Events"
-				tell process "Terminal"
-					-- Open the rails console in a second tab
-					keystroke "t" using {command down} -- open new tab
-					keystroke "cd ~/projects/" & project & " && ruby script/console" & return -- Execute this command in the second tab
+		end tell
+		tell application "System Events"
+			tell process "Terminal"
+				-- Change to project directory and open the project with our editor
+				keystroke "cd ~/projects/" & project & " && " & editor_cmd & " ."
 				
-					-- Start the rails server in a third tab, this is optional
-					-- keystroke "t" using {command down} -- open new tab
-					-- keystroke "cd ~/projects/" & project & " && ruby script/server" & return -- Execute this command in the third tab
-				
-					keystroke "{" using {command down} -- toggle forward one tab (ie back to the first). so back to command line tab, whether we opted to have a rails server or not
-					keystroke "m" using {control down} -- Maximize Terminal window. You'll need to add ^m as a keyboard shortcut for "Zoom" in System Prefs for this to work
-				end tell
+				-- Open the rails console in a second tab
+				keystroke "t" using {command down} -- open new tab
+				keystroke "cd ~/projects/" & project & " && ruby script/console" & return -- Execute this command in the second tab
+			
+				-- Start the rails server in a third tab, this is optional
+				-- keystroke "t" using {command down} -- open new tab
+				-- keystroke "cd ~/projects/" & project & " && ruby script/server" & return -- Execute this command in the third tab
+			
+				keystroke "{" using {command down} -- toggle forward one tab (ie back to the first). so back to command line tab, whether we opted to have a rails server or not
+				keystroke "m" using {control down} -- Maximize Terminal window. You'll need to add ^m as a keyboard shortcut for "Zoom" in System Prefs for this to work
 			end tell
 		end tell
 	end if
